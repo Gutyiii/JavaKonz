@@ -1,0 +1,89 @@
+CONZOLOS
+
+readme.txt -> readme.md
+gitignore.io + gitignore.txt -> .gitignore (kiterjesztés maga file)
+
+nagy mappa ikonok amikbe az osztályok vannak azok package-k
+
+datum= LocalDate osztály, osztállyal névvel példányosítunk
+
+ÖRÖKLÉS: ha az {egyik osztály} egy [másik osztály], akkor a [másik osztály] egy {egyik osztály}
+
+kivételkezelés:
+-constructorba if(){}
+-új osztály:
+	-osztály nevhéz hozzá kell tenni hogy Exception (extend)
+	-extend Excpetion
+	-constructor generálás, csak üzenettel
+-if-be throw new Kivétel("");
+-összes contructorba kivétel throw
+-ahol példányosítom, használom try catch, saját kivétellel
+
+szerializálás:
+-implement Seralizable -> így lesz menthető
+-ahol példányosítható
+ObjectOutputStream ojKi = new ObjectOutputStream(new FileOutputStream("file név amit menteni akarok"));
+-osztály behívása
+-try catch legenerálása
+-plusz try ág generálása
+-le kell zárni objki.close();
+-kiirni objki.whriteObject(ős);
+-amit menteni akarunk, az őst is implementálni a szerializálásba
+-ős = null
+-object output helyett object input, minden más generálás
+-ős = (ŐS)objbe.readyObject();
+-plusz catch generálása
+
+sorbarendezés:
+-uj rendező osztály
+-implement Comparator<adott osutály amit rendezni akarunk>
+-generáláni compare(o1, o2) absztract metódus
+-getterek generáltatása
+-rendezés belselye
+collator coll = Collator.getInstance();
+return coll.compare(o1.getAdat(), o2.getAdat());
+-osztályba meghívni a rendezést
+public static Rendezo rendezo(){return new Rendezo();}
+-rendező metódus, Collections.sort({amit rendezi akarsz}, Osztaly.rendezo);
+
+bejárható:
+-implement iterable<adott osutály amit rendezni akarunk> interface
+-generálni az iterátor absztract metódust
+-return-el adattagra meghívni a .getIterate(); metódust
+-adott listára iterátor
+return Collection.unmodifiableList({lista}).iterator();
+
+toString()-ek létrehiozása ha listában ki akarsz iratni
+
+
+GUIS
+
+ami elemhez kódot írsz nevezd el
+
+felugró kiválasztó ablak:
+JFileChooser jfc = new JFileChooser(/* könyvtár: new Filter(".")*/);
+
+jfc.setDialogTitle("ablak címe");
+
++import 
+FileNameExtensionFilter filterKepek = new FileNameExtensionFilter("leírás", "kiterjesztés"); 	csak kép
+FileNameExtensionFilter filterTxt = new FileNameExtensionFilter("leírás", "kiterjesztés");	csak szöveg
+jfc.addChooseabFileFilter(filterKepek);
+jfc.addChooseabFileFilter(filterTxt);
+jfc.setFileFilter(filterTxt);
+
+int gomb = jfc.showOpenDialog(/*magátol beadja az jó*/);
+if(gomb==JFileChooser.APPROVE_OPTION){
+Icon icon = new ImageIcon(this.getClass().getResources("kép elérési út src-től nézve"));
+	jOpenPane.showConfirmDialog(
+		rootPane,
+		"uzenet"+ jfc.getSelectedFile().getName();+ "eleres" + jfc.getSelectedFile().getPath();,  //ki kéne szervezni
+		"Kérédés",
+		JOptionPane.OK_CANCEL_OPTION,
+		JOptionPane.INFORMATION_MESSAGE(bármi mert elfedi),
+		icon
+	);
+}
+
+
+
